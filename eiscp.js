@@ -287,7 +287,7 @@ self.connect = function (options) {
     var connection_properties;
 
     options = options || {};
-	config.host = options.host || config.host;
+	config.host = (options.host === undefined || typeof options.host === 'string') ? options.host : config.host;
 	config.port = options.port || config.port;
 	config.model = options.model || config.model;
 	config.reconnect = (options.reconnect === undefined) ? config.reconnect : options.reconnect;
