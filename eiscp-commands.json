@@ -16917,6 +16917,22 @@
           "value": "40",
           "models": "set12"
         },
+        "line1": {
+          "value": "41",
+          "models": "set180"
+        },
+        "line2": {
+          "value": "42",
+          "models": "set180"
+        },
+        "optical": {
+          "value": "44",
+          "models": "set180"
+        },
+        "coaxial": {
+          "value": "45",
+          "models": "set180"
+        },
         "video1": {
           "value": "00",
           "models": "set1"
