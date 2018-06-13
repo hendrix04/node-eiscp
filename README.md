@@ -4,6 +4,14 @@ This is a node module to control and interact with Onkyo receivers over the netw
 
 Basically it is a merge of my previous module which was really simple and https://github.com/miracle2k/onkyo-eiscp translated to javascript, which means a lot more features but some stuff still missing like handling multiple receivers and special commands (ranges are supported though).
 
+### This Fork
+
+As the original repository has been archived and not updated for some time, I've had to fork and add some changes for my [own project](https://github.com/orderoftheflame/volumio-plugins/tree/master/plugins/miscellanea/onkyo_control).
+
+#### Changes
+- Support for CR-N755 Receiver, specifically adding new input-selector values for missing channels.
+- Allow for nulling a previously set receiver config. See [#20](https://github.com/tillbaks/node-eiscp/issues/20).
+
 ### How to use it?
 
 #### Until first release you can add the git url to your package.json like this
@@ -11,7 +19,7 @@ Basically it is a merge of my previous module which was really simple and https:
 ```
 {
   "dependencies": {
-    "eiscp": "git://github.com/tillbaks/node-eiscp.git"
+		"eiscp": "orderoftheflame/node-eiscp"
   }
 }
 ```
