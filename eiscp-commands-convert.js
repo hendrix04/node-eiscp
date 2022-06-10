@@ -19,7 +19,7 @@ var fs = require('fs'),
 
 try {
 
-    doc = require('./eiscp-commands.yaml');
+    doc = require('./eiscp-commands.json');
     result.modelsets = doc.modelsets;
     delete doc.modelsets;
 
