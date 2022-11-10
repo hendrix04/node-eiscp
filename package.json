@@ -1,6 +1,6 @@
 {
   "name": "eiscp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "interface to onkyo receivers / eiscp protocol",
   "main": "eiscp.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tillbaks/node-eiscp"
+    "url": "https://github.com/hendrix04/node-eiscp"
   },
   "keywords": [
     "onkyo",
@@ -20,7 +20,6 @@
     "url": "https://github.com/tillbaks/node-eiscp/issues"
   },
   "dependencies": {
-      "async":  "*",
-      "js-yaml": "*"
+      "async":  "*"
   }
 }
