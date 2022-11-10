@@ -325,14 +325,8 @@ self.connect = function (options) {
 	  Compute modelsets for this model (so commands which are possible on this model are allowed)
       Note that this is not an exact match, model only has to be part of the modelname
     */
-    Object.keys(MODELSETS).forEach(function (set) {
-        MODELSETS[set].forEach(function (models) {
-            if (models.indexOf(config.model) !== -1) {
-                config.modelsets.push(set);
-            }
-        });
-    });
-
+    config.modelsets = get_sets(config.model);
+   
     self.emit('debug', util.format("INFO (connecting) Connecting to %s:%s (model: %s)", config.host, config.port, config.model));
 
 	// Reconnect if we have previously connected
@@ -467,6 +461,31 @@ self.get_commands = function (zone, callback) {
     });
 };
 
+self.get_model_commands = function(model) {
+    /*
+        Returns all zones and commands that a
+        particular model supports.
+    */
+    const sets = get_sets(model);
+    const output = {};
+
+    Object.keys(COMMAND_MAPPINGS).forEach(zone => {
+        Object.keys(COMMAND_MAPPINGS[zone]).forEach(command => {
+            const mapping = Object.values(VALUE_MAPPINGS[zone][COMMAND_MAPPINGS[zone][command]])[0]
+            const set = (Array.isArray(mapping)) ? mapping[0]['models'] : mapping['models'];
+            if (sets.includes(set)) {
+                // We found a command for this model!
+                if (!output.hasOwnProperty(zone)) {
+                    output[zone] = [];
+                }
+
+                output[zone].push(command);
+            }
+        });
+    });
+    return output;
+}
+
 self.get_command = function (command, callback) {
     /*
       Returns all command values in given zone and command
@@ -490,3 +509,16 @@ self.get_command = function (command, callback) {
         callback(err, result);
     });
 };
+
+function get_sets (model) {
+    let output = [];
+    Object.keys(MODELSETS).forEach(function (set) {
+        MODELSETS[set].forEach(function (models) {
+            if (models.indexOf(model) !== -1) {
+                output.push(set);
+            }
+        });
+    });
+    
+    return output;
+}
